@@ -8,13 +8,20 @@ security:
       scope: server
 
 spring:
-  data:
-    mongodb:
-      host: account-mongodb
-      username: user
-      password: ${MONGODB_PASSWORD}
-      database: piggymetrics
-      port: 27017
+  datasource:
+    url: jdbc:mysql://localhost:3306/mysqlaa
+    username: root
+    password: root
+  jpa:
+    database: mysql
+    show-sql: true
+#  data:
+#    mongodb:
+#      host: account-mongodb
+#      username: user
+#      password: ${MONGODB_PASSWORD}
+#      database: piggymetrics
+#      port: 27017
 
 server:
   servlet:
