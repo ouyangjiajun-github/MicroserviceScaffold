@@ -1,0 +1,51 @@
+#断路器配置 20000毫秒后熔断服务
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+#feign客户端的超时时间
+ribbon:
+  #建立连接所用的时间，适用于网络状况正常的情况下，两端连接所需要的时间
+  ReadTimeout: 20000
+  #指建立连接后从服务端读取到可用资源所用的时间
+  ConnectTimeout: 20000
+
+zuul:
+  #表示我们忽略所有默认匹配的path。只能路由到我们手动配置的路径。
+  ignoredServices: '*'
+  host:
+    connect-timeout-millis: 20000
+    socket-timeout-millis: 20000
+
+  routes:
+    auth-service:
+        path: /uaa/**
+        url: http://auth-service:5000
+        #一般此参数用于去掉serviceid，保证路径为实际路径，此处配false说明实际路径就是带了serviceid的
+        stripPrefix: false
+        # 头参数处理，为空则不处理
+        sensitiveHeaders:
+
+    account-service:
+        path: /accounts/**
+        serviceId: account-service
+        stripPrefix: false
+        sensitiveHeaders:
+
+    statistics-service:
+        path: /statistics/**
+        serviceId: statistics-service
+        stripPrefix: false
+        sensitiveHeaders:
+
+    notification-service:
+        path: /notifications/**
+        serviceId: notification-service
+        stripPrefix: false
+        sensitiveHeaders:
+
+server:
+  port: 4000

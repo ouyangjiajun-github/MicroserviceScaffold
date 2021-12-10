@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    config:
+      server:
+        native:
+          # 声明配置的路径
+          search-locations: classpath:/serverConfigs
+  profiles:
+    active: native
+  #配置security的账户密码
+  security:
+    user:
+      # 从docker启动变量中读取
+      password: ${CONFIG_SERVICE_PASSWORD}
+#声明对外暴露的端口
+server:
+  port: 8888
