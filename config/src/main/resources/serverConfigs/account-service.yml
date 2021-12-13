@@ -20,7 +20,7 @@ spring:
 #      host: account-mongodb
 #      username: user
 #      password: ${MONGODB_PASSWORD}
-#      database: piggymetrics
+#      database: ouyang
 #      port: 27017
 
 server:

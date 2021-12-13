@@ -1,5 +1,5 @@
 spring:
   data:
     mongodb:
-      database: piggymetrics
+      database: ouyang
       port: 0
